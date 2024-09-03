@@ -5,6 +5,7 @@ from datetime import datetime
 import csv
 import os
 from configparser import ConfigParser
+from random import randint
 
 
 # Definir el número de tweets a extraer
@@ -47,7 +48,7 @@ async def get_tweets(tweets):
         print(f'{datetime.now()} - Extrayendo tweets...')
         tweets = await client.search_tweet(QUERY, 'Latest', 20)
     else:
-        wait_time = 5
+        wait_time = randint(5, 10)
         print(f'{datetime.now()} - Extrayendo los siguientes tweets despues de {wait_time}s...')
         time.sleep(wait_time)
         tweets = await tweets.next()
